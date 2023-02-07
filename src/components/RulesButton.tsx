@@ -12,8 +12,8 @@ export function RulesButton(){
     
     return(
         <>
-            <button className="border border-white rounded-lg w-1/3 py-2 mb-6" onClick={toggleModal}>
-                <span className="text-white font-[600]">RULES</span>
+            <button className="border lg:border-2 border-headerOutline rounded-lg lg:rounded-xl w-1/3 self-end lg:w-36 py-2 lg:px-4 mb-6 lg:mb-0 lg:mr-8" onClick={toggleModal}>
+                <span className="text-white lg:text-lg font-[600]">RULES</span>
             </button>
             
             <Transition

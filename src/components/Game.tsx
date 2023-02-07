@@ -64,16 +64,20 @@ export function Game(){
     useEffect(() => {
         if(chosen && housePick){
             if(chosen.name === housePick.name){
-                setMessage("It's a tie!")
+                setMessage("IT'S A TIE!")
             }else if(
                 (chosen.name === "paper" && housePick.name === "rock") ||
                 (chosen.name === "rock" && housePick.name === "scissors") ||
                 (chosen.name === "scissors" && housePick.name === "paper")
             ){
-                handleScore(1)
+                setTimeout(() => {
+                    handleScore(1)
+                }, 3500)
                 setMessage("YOU WIN")
             }else{
-                handleScore(-1)
+                setTimeout(() => {
+                    handleScore(-1)
+                }, 3500)
                 setMessage("YOU LOSE")
             }
         }
@@ -84,9 +88,10 @@ export function Game(){
         <>
             {chosen && housePick ?
             <>
-                <div className="relative w-[300px] flex justify-between">
-                    <div className="flex flex-col items-center gap-5">
-                        <div>
+                {/* RESULTS */}
+                <div className="w-[300px] flex justify-between">
+                    <div className="relative flex flex-col items-center gap-5">
+                        <div className="animate-result1 z-20">
                             <Icon
                                 key={chosen.name}
                                 icon={chosen.iconUrl} 
@@ -94,14 +99,36 @@ export function Game(){
                                 secondaryColor={chosen.secondaryColor}
                                 alt={chosen.name}
                             />
+
                         </div>
+                        
+                        <div className="absolute rounded-full top-4 left-4 w-24 h-24 bg-black opacity-10" />
+
+                        {message === "YOU WIN" ? 
+                        <div 
+                            className="absolute rounded-full -top-[4rem] w-64 h-64 opacity-10 animate-result4"
+                            style={{
+                                background: `
+                                    radial-gradient(
+                                    rgba(255, 255, 255) 43%, 
+                                    rgba(220, 220, 220) 43%, 
+                                    rgba(220, 220, 220) 55%,
+                                    rgba(180, 180, 180) 55%    
+                                )`
+                            }}
+                        />
+                        :
+                        <></>
+                        }
+                        
                         <div>
                             <span className="text-white font-[700]">YOU PICKED</span>
                         </div>
+
                     </div>
 
-                    <div className="flex flex-col items-center gap-5">
-                        <div>
+                    <div className="relative flex flex-col items-center gap-5">
+                        <div className="animate-result2 z-20">
                             <Icon
                                 key={housePick.name}
                                 icon={housePick.iconUrl} 
@@ -109,13 +136,35 @@ export function Game(){
                                 secondaryColor={housePick.secondaryColor}
                                 alt={housePick.name}
                             />
+
                         </div>
+
+                        <div className="absolute rounded-full top-4 left-4 w-24 h-24 bg-black opacity-10" />
+
+                        {message === "YOU LOSE" ? 
+                        <div 
+                            className="absolute rounded-full -top-[4rem] w-64 h-64 opacity-10 animate-result4"
+                            style={{
+                                background: `
+                                    radial-gradient(
+                                    rgba(255, 255, 255) 43%, 
+                                    rgba(220, 220, 220) 43%, 
+                                    rgba(220, 220, 220) 55%,
+                                    rgba(180, 180, 180) 55%    
+                                )`
+                            }}
+                        />
+                        :
+                        <></>
+                        }
+
                         <div>
                             <span className="text-white font-[700]">THE HOUSE PICKED</span>
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col gap-7">
+
+                <div className="flex flex-col gap-7 animate-result3">
                     <span className="font-barlow text-white text-6xl font-[700]">
                         {message}
                     </span>

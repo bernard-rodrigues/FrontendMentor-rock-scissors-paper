@@ -30,6 +30,24 @@ module.exports = {
       },
       backgroundSize: {
         'mycenter': '60%'
+      },
+      keyframes: {
+        result: {
+          "0%": {opacity: 0},
+          "90%": {opacity: 0},
+          "100%": {opacity: 1}
+        },
+        result4: {
+          "0%": {opacity: 0},
+          "90%": {opacity: 0},
+          "100%": {opacity: 0.1}
+        },
+      },
+      animation: {
+        result1: "result 1s linear forwards",
+        result2: "result 2s linear forwards",
+        result3: "result 3s linear forwards",
+        result4: "result4 3s linear forwards"
       }
     },
   },
