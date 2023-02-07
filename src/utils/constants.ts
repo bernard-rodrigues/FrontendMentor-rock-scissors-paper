@@ -5,4 +5,5 @@ export const colors = {
     paperGradientTo: "hsl(230, 89%, 65%)",
     rockGradientFrom: "hsl(349, 71%, 52%)",
     rockGradientTo: "hsl(349, 70%, 56%)",
+    headerOutline: "hsl(217, 16%, 45%)",
 }

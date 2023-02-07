@@ -1,32 +1,37 @@
-interface IconProps{
+import { ButtonHTMLAttributes } from "react"
+
+interface IconProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     icon: string,
-    from: string,
-    to: string,
+    primaryColor: string,
+    secondaryColor: string,
+    alt: string,
 }
 
-export function Icon(props: IconProps){
+export function Icon({icon, primaryColor, secondaryColor, alt, ...rest}: IconProps){
     return(
-        <div 
-                className="absolute top-0 left-0 w-32 h-32 rounded-full overflow-hidden"
+        <button 
+            className="w-32 h-32 rounded-full flex justify-center items-center"
+            style={{
+                backgroundImage: `radial-gradient(at center 45%, ${primaryColor} 66%, ${secondaryColor} 66%)`
+            }}
+            {...rest}
+        >
+            <div 
+                className="w-3/4 h-3/4 flex justify-center items-center rounded-full overflow-hidden"
                 style={{
-                    backgroundColor: props.from
-                }}    
+                    backgroundImage: `radial-gradient(at center 55%, white 66%, #dddddd 66%)`
+                }}                
             >
-                <div 
-                    className="w-full h-full rounded-full flex justify-center items-center -translate-y-[5%]"
-                    style={{
-                        backgroundColor: props.to
-                    }}    
-                >
-
-                    <div className="relative w-3/4 h-3/4 flex translate-y-[7%] justify-center items-center bg-zinc-200 rounded-full overflow-hidden">
-                        <div className="absolute w-full h-full rounded-full bg-white translate-y-[5%]">
-                            <img className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[55%] h-[3.25rem] w-auto" src={props.icon} alt=""/>
-                        </div>
-                    </div>
-
-                    
-                </div>
-        </div>
+                <img 
+                    className="h-[3.25rem] w-auto" src={icon} alt={alt}
+                    style={
+                        alt === "rock" ?
+                        {transform: "scale(0.8)"}
+                        :
+                        {}
+                    }
+                />
+            </div>
+        </button>
     )
 }
