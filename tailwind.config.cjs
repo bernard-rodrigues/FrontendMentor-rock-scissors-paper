@@ -26,10 +26,10 @@ module.exports = {
         barlow: "'Barlow Semi Condensed', sans-serif"
       },
       backgroundImage: {
-        game: "radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%))"
+        game: "radial-gradient(circle at top, hsl(214, 47%, 23%), hsl(237, 49%, 15%))"
       },
       backgroundSize: {
-        'mycenter': '60%'
+        'mycenter': '50%'
       },
       keyframes: {
         result: {
@@ -42,12 +42,27 @@ module.exports = {
           "90%": {opacity: 0},
           "100%": {opacity: 0.1}
         },
+        moveFromRight: {
+          "0%": {transform: "translateX(60%)"},
+          "90%": {transform: "translateX(60%)"},
+          "100%": {transform: "translateX(0%)"}
+        },
+        moveFromLeft: {
+          "0%": {transform: "translateX(-60%)"},
+          "90%": {transform: "translateX(-60%)"},
+          "100%": {transform: "translateX(0%)"}
+        }
       },
       animation: {
         result1: "result 1s linear forwards",
         result2: "result 2s linear forwards",
         result3: "result 3s linear forwards",
-        result4: "result4 3s linear forwards"
+        result4: "result4 3s linear forwards",
+        moveFromRight: "moveFromRight 3s ease-out forwards",
+        moveFromLeft: "moveFromLeft 3s ease-out forwards"
+      },
+      screens:{
+        hd: '1800px'
       }
     },
   },

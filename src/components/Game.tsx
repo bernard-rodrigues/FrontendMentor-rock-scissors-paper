@@ -6,6 +6,9 @@ import { Icon } from './Icon'
 import { colors } from '../utils/constants'
 import { useEffect, useState } from 'react'
 import { useScore } from '../contexts/scoreContext'
+import { BackShadow } from './BackShadow'
+import { WinnerBright } from './WinnerBright'
+import { PickedText } from './PickedText'
 
 export interface Choice{
     name: string,
@@ -47,7 +50,7 @@ export function Game(){
     const [ message, setMessage ] = useState("")
     const [ onMatch, setOnMatch ] = useState(false)
 
-    const { handleScore } = useScore()
+    const { score, handleScore, updateScore } = useScore()
 
     function handleIconChoice(choice: Choice){
         setChosen(choice);
@@ -84,13 +87,21 @@ export function Game(){
         return
     }, [onMatch])
 
+    useEffect(() => {
+        if(localStorage.getItem("storedData")){
+            const data = JSON.parse(localStorage.getItem("storedData")!)
+            console.log(data)
+            updateScore(data.score)
+        }
+    }, [])
+
     return(
         <>
             {chosen && housePick ?
             <>
                 {/* RESULTS */}
-                <div className="w-[300px] flex justify-between">
-                    <div className="relative flex flex-col items-center gap-5">
+                <div className="w-[300px] lg:w-[1024px] hd:w-[1366px] gap-y-[5rem] flex justify-between flex-wrap lg:flex-nowrap">
+                    <div className="relative flex flex-col lg:flex-col-reverse items-center gap-5 lg:gap-12 hd:gap-16 lg:order-1 lg:animate-moveFromRight">
                         <div className="animate-result1 z-20">
                             <Icon
                                 key={chosen.name}
@@ -98,36 +109,23 @@ export function Game(){
                                 primaryColor={chosen.primaryColor} 
                                 secondaryColor={chosen.secondaryColor}
                                 alt={chosen.name}
+                                onMatch={onMatch}
                             />
-
                         </div>
                         
-                        <div className="absolute rounded-full top-4 left-4 w-24 h-24 bg-black opacity-10" />
+                        <BackShadow />
 
                         {message === "YOU WIN" ? 
-                        <div 
-                            className="absolute rounded-full -top-[4rem] w-64 h-64 opacity-10 animate-result4"
-                            style={{
-                                background: `
-                                    radial-gradient(
-                                    rgba(255, 255, 255) 43%, 
-                                    rgba(220, 220, 220) 43%, 
-                                    rgba(220, 220, 220) 55%,
-                                    rgba(180, 180, 180) 55%    
-                                )`
-                            }}
-                        />
+                        <WinnerBright />
                         :
                         <></>
                         }
                         
-                        <div>
-                            <span className="text-white font-[700]">YOU PICKED</span>
-                        </div>
+                        <PickedText text="YOU PICKED" />
 
                     </div>
 
-                    <div className="relative flex flex-col items-center gap-5">
+                    <div className="relative flex flex-col lg:flex-col-reverse items-center gap-5 lg:gap-12 hd:gap-16 lg:order-3 lg:animate-moveFromLeft">
                         <div className="animate-result2 z-20">
                             <Icon
                                 key={housePick.name}
@@ -135,49 +133,44 @@ export function Game(){
                                 primaryColor={housePick.primaryColor} 
                                 secondaryColor={housePick.secondaryColor}
                                 alt={housePick.name}
+                                onMatch={onMatch}
                             />
 
                         </div>
 
-                        <div className="absolute rounded-full top-4 left-4 w-24 h-24 bg-black opacity-10" />
+                        <BackShadow />
 
                         {message === "YOU LOSE" ? 
-                        <div 
-                            className="absolute rounded-full -top-[4rem] w-64 h-64 opacity-10 animate-result4"
-                            style={{
-                                background: `
-                                    radial-gradient(
-                                    rgba(255, 255, 255) 43%, 
-                                    rgba(220, 220, 220) 43%, 
-                                    rgba(220, 220, 220) 55%,
-                                    rgba(180, 180, 180) 55%    
-                                )`
-                            }}
-                        />
+                        <WinnerBright />
                         :
                         <></>
                         }
 
-                        <div>
-                            <span className="text-white font-[700]">THE HOUSE PICKED</span>
-                        </div>
+                        <PickedText text="THE HOUSE PICKED" />
+                    </div>
+                    
+                    <div className="flex flex-col m-auto gap-7 animate-result3 lg:order-2">
+                        <span className={`
+                            font-barlow text-white text-6xl font-[700]
+                            hd:text-7xl
+                            `}>
+                            {message}
+                        </span>
+                        <button 
+                            className="text-xl hd:text-2xl font-[600] text-backgroundGradientFrom font-barlow border bg-white rounded-lg py-2 hd:py-4 lg:hover:text-rockGradientTo"
+                            onClick={reset}
+                        >
+                            PLAY AGAIN
+                        </button>
                     </div>
                 </div>
 
-                <div className="flex flex-col gap-7 animate-result3">
-                    <span className="font-barlow text-white text-6xl font-[700]">
-                        {message}
-                    </span>
-                    <button 
-                        className="text-xl font-[600] text-backgroundGradientFrom font-barlow border bg-white rounded-lg py-2"
-                        onClick={reset}
-                    >
-                        PLAY AGAIN
-                    </button>
-                </div>
             </>
             :
-            <div className="flex flex-wrap justify-center items-center gap-x-11 w-[300px] h-[300px] bg-mycenter bg-center bg-no-repeat" style={{backgroundImage: `url(${triangle})`}}>
+            <div className={`
+                flex flex-wrap justify-between items-center w-[300px] h-[260px] bg-mycenter bg-center bg-no-repeat
+                lg:w-[440px] lg:h-[381px]
+                hd:w-[769px] hd:h-[675px]`} style={{backgroundImage: `url(${triangle})`}}>
                 {choices.map(choice => (
                     <Icon
                         key={choice.name}
@@ -186,6 +179,7 @@ export function Game(){
                         secondaryColor={choice.secondaryColor}
                         alt={choice.name}
                         onClick={() => handleIconChoice(choice)}
+                        onMatch={onMatch}
                     />
                 ))}
             </div>
