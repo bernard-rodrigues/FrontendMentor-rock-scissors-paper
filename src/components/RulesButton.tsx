@@ -22,13 +22,14 @@ export function RulesButton(){
                     <Dialog.Overlay className="w-screen h-screen bg-black/80 fixed inset-0"/>
                     <Dialog.Content className={`
                         absolute w-screen h-screen p-14 flex flex-col justify-between items-center gap-12 bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-                        lg:flex-row lg:flex-wrap lg:max-w-md lg:h-fit lg:rounded-lg lg:p-8`}>
+                        lg:flex-row lg:flex-wrap lg:max-w-md lg:h-fit lg:rounded-lg lg:p-8`}
+                    >
                         
                         <Dialog.Title className="text-4xl mt-6 font-barlow font-[700] text-darkText">
                             RULES
                         </Dialog.Title>
                         
-                        <Dialog.Close className="text-zinc-400 hover:text-zinc-600 order-3 lg:order-2">
+                        <Dialog.Close className="text-zinc-400 hover:text-zinc-600 order-3 mb-12 lg:mb-0 lg:order-2">
                             <X size={24} aria-label="Fechar"/>
                         </Dialog.Close>
                         

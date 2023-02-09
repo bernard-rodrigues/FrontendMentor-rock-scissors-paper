@@ -17,7 +17,7 @@ export function Icon({icon, primaryColor, secondaryColor, alt, onMatch, ...rest}
                 className={`
                     w-32 h-32 m-auto rounded-full flex justify-center items-center
                     lg:hover:brightness-110 lg:w-44 lg:h-44 
-                    hd:w-72 hd:h-72`}
+                    hd:w-56 hd:h-56`}
                 style={{
                     backgroundImage: `radial-gradient(at center 45%, ${primaryColor} 66%, ${secondaryColor} 66%)`,
                 }}

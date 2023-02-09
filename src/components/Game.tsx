@@ -170,7 +170,7 @@ export function Game(){
             <div className={`
                 flex flex-wrap justify-between items-center w-[300px] h-[260px] bg-mycenter bg-center bg-no-repeat
                 lg:w-[440px] lg:h-[381px]
-                hd:w-[769px] hd:h-[675px]`} style={{backgroundImage: `url(${triangle})`}}>
+                hd:w-[570px] hd:h-[494px]`} style={{backgroundImage: `url(${triangle})`}}>
                 {choices.map(choice => (
                     <Icon
                         key={choice.name}
