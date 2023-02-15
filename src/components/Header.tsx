@@ -5,12 +5,15 @@ export function Header(){
     const { score } = useScore()
     
     return(
-        <div className="border-[3px] border-headerOutline rounded-lg p-3 lg:py-2 flex justify-between w-[290px] lg:w-[820px] hd:w-[980px] lg:rounded-2xl">
-            <img className="w-28 p-3 lg:w-56 hd:w-72 lg:p-5 hd:p-7" src={logo} alt="Logo written Rock Paper Scissors"/>
-            <div className="py-2 px-6 lg:mx-4 lg:my-3 rounded lg:rounded-lg flex flex-col items-center justify-center bg-white">
-                <span className="text-xs lg:text-lg hd:text-2xl lg:px-9 font-[600] text-scoreText">SCORE</span>
-                <span className="text-4xl lg:text-7xl hd:text-8xl font-[700] text-darkText">{score}</span>
+        <header className={`
+            border-[3px] border-headerOutline rounded-lg flex justify-between items-center w-[314px] h-[98px] pl-[21px] pr-[10px]
+            lg:py-2 lg:w-[820px] lg:rounded-2xl
+            `} >
+            <img className="w-[85px] lg:w-56 hd:w-72 lg:p-5 hd:p-7" src={logo} alt="Logo written Rock Paper Scissors"/>
+            <div className="relative h-[73px] w-[80px] lg:mx-4 lg:my-3 rounded lg:rounded-lg flex flex-col items-center justify-center bg-white">
+                <span className="absolute top-[9px] text-[10px] lg:text-lg lg:px-9 font-[600] text-scoreText">SCORE</span>
+                <span className="absolute bottom-[1px] text-[40px] lg:text-7xl font-[700] text-darkText">{score}</span>
             </div>
-        </div>
+        </header>
     )
 }

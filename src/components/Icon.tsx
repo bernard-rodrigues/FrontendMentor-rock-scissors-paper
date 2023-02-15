@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, useEffect } from "react"
+import { ButtonHTMLAttributes } from "react"
 
 interface IconProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     icon: string,
@@ -15,9 +15,9 @@ export function Icon({icon, primaryColor, secondaryColor, alt, onMatch, ...rest}
             
             <button 
                 className={`
-                    w-32 h-32 m-auto rounded-full flex justify-center items-center
+                    w-[134px] h-[134px] m-auto rounded-full flex justify-center items-center
                     lg:hover:brightness-110 lg:w-44 lg:h-44 
-                    hd:w-56 hd:h-56`}
+                `}
                 style={{
                     backgroundImage: `radial-gradient(at center 45%, ${primaryColor} 66%, ${secondaryColor} 66%)`,
                 }}

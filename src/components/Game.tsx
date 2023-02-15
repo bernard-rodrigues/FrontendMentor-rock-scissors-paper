@@ -90,7 +90,6 @@ export function Game(){
     useEffect(() => {
         if(localStorage.getItem("storedData")){
             const data = JSON.parse(localStorage.getItem("storedData")!)
-            console.log(data)
             updateScore(data.score)
         }
     }, [])
@@ -100,8 +99,12 @@ export function Game(){
             {chosen && housePick ?
             <>
                 {/* RESULTS */}
-                <div className="w-[300px] lg:w-[1024px] hd:w-[1366px] gap-y-[5rem] flex justify-between flex-wrap lg:flex-nowrap">
-                    <div className="relative flex flex-col lg:flex-col-reverse items-center gap-5 lg:gap-12 hd:gap-16 lg:order-1 lg:animate-moveFromRight">
+                <div className={`
+                    mt-[100px] w-[300px] gap-y-[4rem] flex justify-between flex-wrap
+                    lg:w-[1024px] lg:flex-nowrap`}>
+                    <div className={`
+                        relative flex flex-col items-center gap-6
+                        lg:flex-col-reverse lg:gap-12 hd:gap-16 lg:order-1 lg:animate-moveFromRight`}>
                         <div className="animate-result1 z-20">
                             <Icon
                                 key={chosen.name}
@@ -125,7 +128,9 @@ export function Game(){
 
                     </div>
 
-                    <div className="relative flex flex-col lg:flex-col-reverse items-center gap-5 lg:gap-12 hd:gap-16 lg:order-3 lg:animate-moveFromLeft">
+                    <div className={`
+                        relative flex flex-col items-center gap-6  
+                        lg:flex-col-reverse lg:gap-12 lg:order-3 lg:animate-moveFromLeft`}>
                         <div className="animate-result2 z-20">
                             <Icon
                                 key={housePick.name}
@@ -167,10 +172,10 @@ export function Game(){
 
             </>
             :
-            <div className={`
-                flex flex-wrap justify-between items-center w-[300px] h-[260px] bg-mycenter bg-center bg-no-repeat
+            <main className={`
+                flex flex-wrap mt-[97px] justify-between items-center w-[353px] h-[294px] bg-mycenter bg-center bg-no-repeat
                 lg:w-[440px] lg:h-[381px]
-                hd:w-[570px] hd:h-[494px]`} style={{backgroundImage: `url(${triangle})`}}>
+            `} style={{backgroundImage: `url(${triangle})`}}>
                 {choices.map(choice => (
                     <Icon
                         key={choice.name}
@@ -182,7 +187,7 @@ export function Game(){
                         onMatch={onMatch}
                     />
                 ))}
-            </div>
+            </main>
             }
         </>
     )

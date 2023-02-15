@@ -6,7 +6,7 @@ import { ScoreContextProvider } from "./contexts/scoreContext";
 export function App() {
 
   return (
-    <div className="w-screen h-screen bg-game py-8 lg:pt-14 flex flex-col justify-between items-center overflow-hidden">
+    <div className="w-screen h-screen bg-game py-8 lg:pt-14 flex flex-col items-center overflow-hidden relative">
       <ScoreContextProvider>
         <Header />
         <Game />

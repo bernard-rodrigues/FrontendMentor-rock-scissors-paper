@@ -2,7 +2,7 @@ export function WinnerBright(){
     return(
         <div 
             className={`
-                absolute rounded-full -top-[4rem] w-64 h-64 opacity-10 animate-result4 
+                absolute rounded-full -top-[77px] w-72 h-[280px] opacity-10 animate-result4 
                 lg:-top-[6rem] lg:w-[40rem] lg:h-[40rem]
                 hd:-top-[10.5rem] hd:w-[60rem] hd:h-[60rem] 
                 `}
